@@ -5,8 +5,9 @@ from selenium.webdriver.common.by import By
 from Test_Data.data import Nivetha_Data
 from Test_locators.locators import Nivetha_locators
 import pytest 
-from selenium.webdriver.support.ui import Select
+# from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.action_chains import ActionChains
+from time import sleep
 from selenium.webdriver.common.keys import Keys
 
 
@@ -22,7 +23,7 @@ class Test_Nivetha:
     def test_get_title(self, boot):
         self.driver.implicitly_wait(10)
         self.driver.get(Nivetha_Data().url)
-        assert self.driver.title == 'nivetha'
+        assert self.driver.title =='OrangeHRM'
         print("SUCCESS : Web Title Captured")
    
     def test_login(self, boot):
@@ -31,19 +32,11 @@ class Test_Nivetha:
         self.driver.find_element(by=By.NAME, value=Nivetha_locators().username_locator).send_keys(Nivetha_Data().username)
         self.driver.find_element(by=By.NAME, value=Nivetha_locators().password_locator).send_keys(Nivetha_Data().password)
         self.driver.find_element(by=By.XPATH, value=Nivetha_locators().submitBox_locator).click()
-        assert self.driver.title =='OrangeHRM'
         print("SUCCESS : Logged in with the Username {a} & {b}".format(a=Nivetha_Data().username, b=Nivetha_Data().password))
-    
-    
-    # def test_PIM(self, boot):
         self.driver.implicitly_wait(20)
         self.driver.find_element(by=By.XPATH, value=Nivetha_locators().PIM_locator).click()
-
-    # def test_Add(self, boot):
         self.driver.implicitly_wait(25)
         self.driver.find_element(by=By.XPATH, value=Nivetha_locators().Add_locator).click()
-
-    # def test_Addemployee(self, boot):
         self.driver.implicitly_wait(20)
         self.driver.find_element(by=By.NAME, value=Nivetha_locators().firstName_locator).send_keys(Nivetha_Data().first_Name)
         self.driver.implicitly_wait(20)
@@ -58,58 +51,43 @@ class Test_Nivetha:
         self.driver.find_element(by=By.XPATH, value=Nivetha_locators().p_locator).send_keys(Nivetha_Data().pwd)
         self.driver.implicitly_wait(20)
         self.driver.find_element(by=By.XPATH, value=Nivetha_locators().cp_locator).send_keys(Nivetha_Data().c_pwd)
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(8)
         self.driver.find_element(by=By.XPATH, value=Nivetha_locators().save_locator).click()
-        
-        
-    # def test_personal_details(self, boot):
-     
-    #     self.driver.find_element(by=By.XPATH, value=Nivetha_locators().Nickname_l).send_keys(Nivetha_Data().Nickname)
-        # self.driver.find_element(by=By.XPATH, value=Nivetha_locators().otherid_l).send_keys(Nivetha_Data().otherid)
-#         self.driver.find_element(by=By.XPATH, value=Nivetha_locators().dln_l).send_keys(Nivetha_Data().dln)
-#         self.driver.find_element(by=By.XPATH, value=Nivetha_locators().save_l).click()
-    # def test_select_license_ed(self, boot):
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(8)
+        self.driver.find_element(by=By.XPATH, value='//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div[2]/div/div/div[2]/input').send_keys('kutty')
+        self.driver.find_element(by=By.XPATH, value='//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div[1]/div[2]/div/div[2]/input').send_keys('989898')
+        self.driver.find_element(by=By.XPATH, value='//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div[2]/div[1]/div/div[2]/input').send_keys('9878789098')
+        self.driver.implicitly_wait(8)
+
         self.driver.find_element(by=By.XPATH, value =Nivetha_locators().license_l).send_keys(Nivetha_Data().license)
-        # self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(8)
         self.driver.find_element(by=By.XPATH, value = Nivetha_locators().SSN_l).send_keys(Nivetha_Data().SSN)
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(8)
         self.driver.find_element(by=By.XPATH, value = Nivetha_locators().SIN_l).send_keys(Nivetha_Data().SIN)
-     
-    
-    # def select_by_nationality(self):
-#         print('method-select_by_nationality')
-#         sleep(3)
-        # self.driver.implicitly_wait(20)
-        # nationality = self.driver.find_element(by=By.XPATH, value =Nivetha_locators().nationality_l).click()
-        # nationality_dropdown = Select(nationality)
-        # nationality_dropdown.select_by_visible_text("American")
+        self.driver.implicitly_wait(8)
 
-    # def test_select_marital_status(self, boot): 
+        dropdown_element = self.driver.find_element(By.XPATH, '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[1]/div[1]/div/div[2]/div/div/div[1]')
+        action_chains = ActionChains(self.driver)
+        action_chains.click(dropdown_element).perform()
         self.driver.implicitly_wait(10)
-        marital_status = self.driver.find_element(by=By.XPATH, value =Nivetha_locators().maritalstatus_l)
-        marital_status_dropdown = Select(marital_status)
-        marital_status_dropdown.select_by_visible_text('married')
+        option_element = self.driver.find_element(By.XPATH, '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[1]/div[1]/div/div[2]/div/div[2]/div[84]').click()
         
+        marital_dropdown = self.driver.find_element(by=By.XPATH, value='//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[1]/div[2]/div/div[2]/div/div[1]')
+        action_chains.click(on_element=marital_dropdown).perform()
+        self.driver.implicitly_wait(10)
 
-    # def test_select_by_dob(self, boot):
+        self.driver.find_element(by=By.XPATH, value='//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[1]/div[2]/div/div[2]/div/div[2]/div[3]').click()
+        action = ActionChains(self.driver)
         self.driver.implicitly_wait(10)
-        dob = self.driver.find_element(by=By.XPATH , value=Nivetha_locators().dob_l).click()
-        dob_dropdown = Select(dob)    
-        dob_dropdown.select_by_value('1992-02-10')   
-     
-    # def test_gender(self, boot):
-        self.driver.implicitly_wait(10)
+
+        dob_dropdown = self.driver.find_element(by=By.XPATH, value='//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[2]/div[1]/div/div[2]/div/div/input').send_keys('1989-04-08')
+        sleep(5)
         self.driver.find_element(by=By.XPATH, value = Nivetha_locators().gender_l).click()
-    # def test_militaryservice(self, boot):
-        self.driver.implicitly_wait(10)  
+        sleep(5)  
         self.driver.find_element(by=By.XPATH, value = Nivetha_locators().militaryservice_l).send_keys(Nivetha_Data().militaryservice)
-        self.driver.implicitly_wait(10)
-        self.driver.find_element(by=By.XPATH, value=Nivetha_locators().save_pd).click()
-    # def test_blood_type(self, boot):
-        self.driver.implicitly_wait(10)
-        self.driver.find_element(by=By.XPATH, value = Nivetha_locators().bloodtype_l).send_keys(Nivetha_Data().bloodtype)
-        self.driver.implicitly_wait(10)
+        sleep(5)
+        self.driver.find_element(by=By.XPATH, value=Nivetha_locators().save_l).click()
+                  
         self.driver.find_element(by=By.XPATH, value=Nivetha_locators().save_cf).click() 
 
-
+        
