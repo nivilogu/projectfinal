@@ -12,7 +12,7 @@ class Nivetha_Data:
    middle_Name = 'logu'
    last_Name = 'eswar'
 
-   u_name = 'nilakuttttttttttty'
+   u_name = 'sathyabamaaaaaaaa'
    pwd = 'Qwer@12345'
    c_pwd = 'Qwer@12345'
    Nickname = 'nilan'
@@ -23,7 +23,7 @@ class Nivetha_Data:
    SIN = '879867867'
    nationality = '/html/body/div/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[1]/div[1]/div/div[2]/div/div/div[1]'
    # marital_status = "/html/body/div/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[1]/div[2]/div/div[2]/div/div/div[1]"
-   # maritalstatus_s= 'married'
+   # marital_status= 'married'
    dob = "1992-02-10"
    bloodtype = "O+"
    gender = 'female'
